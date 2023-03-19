@@ -17,4 +17,6 @@ jobs:
         uses: bufbuild/buf-setup-action@v1
         with:
           version: "1.15.1"
+
+      - name: check version
         run: buf --version
