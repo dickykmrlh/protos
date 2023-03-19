@@ -30,6 +30,7 @@ jobs:
 
       - name: push generate
         uses: EndBug/add-and-commit@v9
-        author_name: proto ci
-        author_email: dickykmlrh.proto.ci@gmail.com
-        message: "commit generated proto"
+        with:
+          author_name: proto ci
+          author_email: dickykmlrh.proto.ci@gmail.com
+          message: "commit generated proto"
