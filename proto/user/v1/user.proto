@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user.v1;
 
-option go_package = "user/v1;user_v1";
+option go_package = "github.com/dickykmrlh/protos/gen/go/user/v1;user_v1";
 
 import "validate/validate.proto";
 
@@ -26,7 +26,7 @@ message GetUserRequest {
     string id = 1;
 }
 
-message GetUserReponse {
+message GetUserResponse {
     User user = 1;
 }
 
@@ -43,6 +43,6 @@ message CreateUserResponse {
 }
 
 service UserService {
-  rpc GetUser(GetUserRequest) returns (GetUserReponse) {}
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
 }
