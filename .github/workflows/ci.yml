@@ -18,5 +18,5 @@ jobs:
         with:
           version: "1.15.1"
 
-      - name: check version
-        run: buf --version
+      - name: lint check
+        run: buf lint
