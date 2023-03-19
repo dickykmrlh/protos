@@ -26,4 +26,10 @@ jobs:
         run: buf breaking proto --against https://github.com/${GITHUB_REPOSITORY}.git#subdir=proto,branch=main
 
       - name: generate proto
-        run: buf generate proto --debug
+        run: buf generate proto
+
+      - name: push generate
+        uses: EndBug/add-and-commit@v9
+        author_name: proto ci
+        author_email: dickykmlrh.proto.ci@gmail.com
+        message: "commit generated proto"
