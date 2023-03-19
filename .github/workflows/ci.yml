@@ -28,9 +28,14 @@ jobs:
       - name: generate proto
         run: buf generate proto
 
-      - name: push generate
-        uses: EndBug/add-and-commit@v9
+      - name: commit generated proto
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "commit generated protos"
+
+      - name: push generated proto
+        uses: ad-m/github-push-action@master
         with:
-          author_name: proto ci
-          author_email: dickykmlrh.proto.ci@gmail.com
-          message: "commit generated proto"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
