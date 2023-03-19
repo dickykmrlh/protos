@@ -19,4 +19,4 @@ jobs:
           version: "1.15.1"
 
       - name: lint check
-        run: buf lint
+        run: buf lint proto
