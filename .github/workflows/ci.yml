@@ -24,3 +24,6 @@ jobs:
       - name: backward compatibility check
         continue-on-error: true
         run: buf breaking proto --against https://github.com/${GITHUB_REPOSITORY}.git#subdir=proto,branch=main
+
+      - name: generate proto
+        run: buf generate proto --debug
