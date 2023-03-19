@@ -19,6 +19,7 @@ jobs:
           version: "1.15.1"
 
   checkout:
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - name: lint check
@@ -29,6 +30,7 @@ jobs:
         run: buf breaking proto --against https://github.com/${GITHUB_REPOSITORY}.git#subdir=proto,branch=main
 
   build:
+    runs-on: ubuntu-latest
     needs: [setup, checkout]
     steps:
       - name: generate proto
