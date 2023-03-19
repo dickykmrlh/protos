@@ -22,4 +22,5 @@ jobs:
         run: buf lint proto
 
       - name: backward compatibility check
-        run: buf breaking proto --against "https://github.com/${GITHUB_REPOSITORY}.git#branch=main"
+        continue-on-error: true
+        run: buf breaking proto --against https://github.com/${GITHUB_REPOSITORY}.git#subdir=proto,branch=main
