@@ -1,8 +1,6 @@
 version: v1
 managed:
   enabled: true
-  go_package_prefix:
-    default: github.com/dickykmrlh/protos/gen/go
 plugins:
   - plugin: buf.build/protocolbuffers/go
     out: gen/go
