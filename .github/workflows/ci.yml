@@ -1,49 +1,49 @@
-# name: Protos
+name: Protos
 
-# on:
-#   push:
-#     branches: [main]
-#   pull_request:
-#     branches: [main]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-# jobs:
-#   check:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - uses: bufbuild/buf-setup-action@v1
-#         with:
-#           version: "1.15.1"
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          version: "1.15.1"
 
-#       - name: lint check
-#         run: buf lint proto
+      - name: lint check
+        run: buf lint proto
 
-#       - name: backward compatibility check
-#         continue-on-error: true
-#         run: buf breaking proto --against https://github.com/${GITHUB_REPOSITORY}.git#subdir=proto,branch=main
+      - name: backward compatibility check
+        continue-on-error: true
+        run: buf breaking proto --against https://github.com/${GITHUB_REPOSITORY}.git#subdir=proto,branch=main
 
-#   build:
-#     runs-on: ubuntu-latest
-#     needs: check
-#     steps:
-#       - uses: actions/checkout@v3
-#       - uses: bufbuild/buf-setup-action@v1
-#         with:
-#           version: "1.15.1"
+  build:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          version: "1.15.1"
 
-#       - name: generate proto
-#         run: buf generate proto
+      - name: generate proto
+        run: buf generate proto
 
-#       - name: commit generated proto
-#         run: |
-#           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-#           git config --local user.name "github-actions[bot]"
-#           git add .
-#           git commit -a -m "commit generated protos"
+      - name: commit generated proto
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -a -m "commit generated protos"
 
-#       - name: push generated proto
-#         uses: ad-m/github-push-action@master
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           branch: ${{ github.head_ref }}
-#           force: true
+      - name: push generated proto
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
+          force: true
