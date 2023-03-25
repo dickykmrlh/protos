@@ -14,16 +14,16 @@ enum UserRole {
 
 
 message User {
-    string id = 1 [(validate.rules).string.uuid = true];
+    string id = 1[(validate.rules).string = {uuid: true, ignore_empty: true}];
     string first_name = 2;
     string last_name = 3;
-    UserRole role = 4;
+    UserRole role = 4 [(validate.rules).enum = {defined_only: true, not_in: [0]}];
     string phone_number = 5;
-    string email = 6;
+    string email = 6 [(validate.rules).string = {email: true, ignore_empty: true}];
 }
 
 message GetUserRequest {
-    string id = 1 [(validate.rules).string.uuid = true];
+    string id = 1 [(validate.rules).string.uuid = true]; 
 }
 
 message GetUserResponse {
@@ -31,11 +31,7 @@ message GetUserResponse {
 }
 
 message CreateUserRequest {
-    string first_name = 1;
-    string last_name = 2;
-    string role = 3;
-    string phone_number = 4;
-    string email = 5;
+    User user = 1;
 }
 
 message CreateUserResponse {
